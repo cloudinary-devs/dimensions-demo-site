@@ -1,0 +1,239 @@
+* {
+    font-family: Montserrat;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+a, a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    min-height: 95px;
+    padding: 20px 80px 20px 80px;
+    background: white;
+    border-bottom: 1px solid #EBEFF1;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.footer {
+   display: none;
+}
+
+.flex-row {
+    display: flex;
+    align-items: center;
+}
+
+.site-header {
+    font-family: Abril Fatface;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 0px;
+    text-align: left;
+    margin: 0;
+    margin-right: 30px;
+    border-right: 1px solid #EBEFF1;
+    padding-right: 30px;
+}
+
+.demo-signature {
+    height: 55px;
+}
+
+a.signup-button {
+    width: 185px;
+    height: 42px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    background: #8859E2;
+    color: white;
+    text-align: center;
+}
+
+a.signup-button:hover {
+    background: #9966ff;
+}
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 2000px;
+    height: 200px;
+    margin: 0 auto;
+    background: linear-gradient(106deg, #855DE1 -1.6%, #7C6BE0 15.56%, #6E83DD 35.84%, #5BA3DA 57.68%, #42CDD6 79.53%, #25FFD2 98.25%);
+    color: white;
+}
+
+.hero-text-container {
+    flex-grow: 3;
+    padding: 25px;
+}
+
+.hero-title {
+    max-width: 728px;
+    font-family: Montserrat;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 40px;
+}
+
+.hero-subtitle {
+    max-width: 672px;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 30px;
+    margin-top: 10px;
+}
+
+.page-header {
+    font-size: 36px;
+    font-weight: 300;
+    line-height: 44px;
+    letter-spacing: 0;
+    text-align: left;
+    margin: 40px 0 20px;
+}
+
+.back-button {
+    font-size: 14px;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    text-decoration: underline;
+}
+
+.content {
+    padding: 40px 80px 110px 80px;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 130px;
+}
+
+.item-card {
+    width: 500px;
+    height: 560px;
+    background: #F6F6F6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-img {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-description {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    height: 60px;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: left;
+}
+
+.item-price {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: left;
+}
+
+@media only screen and (max-width: 1440px) {
+    .grid {
+        gap: 35px;
+    }
+
+    .item-card {
+        width: 400px;
+    }
+}
+
+@media only screen and (min-width: 1365px) and (max-width: 1366px) {
+    .item-card {
+        min-width: 378px;
+        width: 378px;
+    }
+}
+
+@media only screen and (min-width: 1280px) and (max-width: 1365px) {
+    .grid {
+        gap: 25px;
+    }
+
+    .item-card {
+        min-width: 356px;
+        width: 356px;
+    }
+}
+
+@media only screen and (min-width: 1921px) {
+    .content {
+        max-width: 1920px;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .demo-signature {
+        display: none;
+    }
+
+    .hero {
+        display: none;
+    }
+
+    .footer {
+        display: block;
+        position: fixed;
+        text-align: center;
+        bottom: 0;
+        width: 100%;
+        height: 100px;
+        padding: 10px;
+        background: white;
+        border-top: 1px solid #EBEFF1;
+        border-bottom-width: 0;
+    }
+
+    .footer > img {
+        height: 100%;
+    }
+
+    .item-card {
+        width: 100%;
+    }
+
+    .item-description {
+        font-size: 22px;
+    }
+
+    .item-price {
+        font-size: 20px;
+    }
+}
