@@ -6,9 +6,9 @@ This repository contains the code to run the [Dimensions Demo website](https://d
 
 To run this website locally:
 
-- check out this repository
+- Clone this repository
 
-- load index.html directly in your browser or serve it with a utils such as [http-server](https://www.npmjs.com/package/http-server):
+- Load index.html directly in your browser or serve it with a utility such as [http-server](https://www.npmjs.com/package/http-server):
 
 ```bash 
 git clone https://github.com/cloudinary-devs/dimensions-demo-site.git
@@ -18,7 +18,7 @@ npm install -g http-server
 http-server dimensions-demo-site
 ```
 
-> any other similar utility would work as well
+> any other equivalent util would work as well
 
 ### Assets
 
