@@ -47,7 +47,7 @@ const PRODUCTS_INFO = {
 		description: "A chair like no other",
 		price: "$1100.00",
 		preset: "barber-chair-2-1711971466758-preset",
-		templates: ["furniture-port-front", "furniture-port-front-right", "furniture-port-left", "furniture-port-front-left"],
+		// templates: ["furniture-port-front", "furniture-port-front-right", "furniture-port-left", "furniture-port-front-left"],
 		config: {
 			"Fabric": {
 				mesh: "Scene_1.Barber_Chair002_Baked003",
@@ -198,6 +198,14 @@ function runDimensions(id) {
 	document.querySelectorAll("div.product-image")
 		?.forEach((img) => img.setAttribute("data-d8s-id", id));
 
+	const { templates } = PRODUCTS_INFO[sku];
+	const hasTemplates = !!templates?.length;
+
+	if (!hasTemplates) {
+		document.getElementById("three-d-preview").classList.add("hidden");
+		document.getElementById("three-d-container")?.classList.add("show");
+	}
+
 	const d8sApi = window._d8sApi = window.initDimensions({
 		account: "demo-site",
 		// account: "cloudinary-dimensions",
@@ -224,7 +232,7 @@ function runDimensions(id) {
 					position: "center",
 				},
 
-				showLoadingProgress: false,
+				showLoadingProgress: !hasTemplates,
 
 				renderer: {
 					debug: {
@@ -253,18 +261,24 @@ function prepareHTML(sku) {
 	const ZOOM_IMAGE_URL = `https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/f_auto,q_auto,dpr_2,w_1000/${sku}/${preset}/`;
 	let idx = 0;
 
-	for (const el of elements) {
-		const zoomImageUrl = `${ZOOM_IMAGE_URL}${templates[idx]}`;
-		el.setAttribute("data-d8s-preset", preset);
-		el.setAttribute("data-d8s-name", templates[idx]);
-		el.addEventListener("touchstart", setZoomImage(zoomImageUrl));
-		el.addEventListener("mouseenter", setZoomImage(zoomImageUrl));
-		idx++;
-	}
+	if (templates?.length) {
+		for (const el of elements) {
+			const zoomImageUrl = `${ZOOM_IMAGE_URL}${templates[idx]}`;
+			el.setAttribute("data-d8s-preset", preset);
+			el.setAttribute("data-d8s-name", templates[idx]);
+			el.addEventListener("touchstart", setZoomImage(zoomImageUrl));
+			el.addEventListener("mouseenter", setZoomImage(zoomImageUrl));
+			idx++;
+		}
 
-	const previewImg = document.getElementById("three-d-preview");
-	previewImg.setAttribute("data-d8s-preset", preset);
-	previewImg.setAttribute("data-d8s-name", templates[0]);
+		const previewImg = document.getElementById("three-d-preview");
+		previewImg.setAttribute("data-d8s-preset", preset);
+		previewImg.setAttribute("data-d8s-name", templates[0]);
+	} else {
+		for (const el of elements) {
+			el.parentElement.classList.add("hidden");
+		}
+	}
 }
 
 function setProductInfo(id) {
@@ -282,10 +296,13 @@ function preloadProductZoomImage(id) {
 	setTimeout(() => {
 		const { preset, templates } = PRODUCTS_INFO[sku];
 		const ZOOM_IMAGE_URL = `https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/f_auto,q_auto,dpr_2,w_1000/${id}/${preset}/`;
-		templates.forEach((templateName) => {
-			const image = new Image();
-			image.src = ZOOM_IMAGE_URL + templateName;
-		});
+
+		if (templates) {
+			templates.forEach((templateName) => {
+				const image = new Image();
+				image.src = ZOOM_IMAGE_URL + templateName;
+			});
+		}
 	}, 2000);
 }
 
