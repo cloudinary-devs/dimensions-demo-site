@@ -237,3 +237,60 @@ a.signup-button:hover {
         font-size: 20px;
     }
 }
+
+#config-container {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.config-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.config-area label {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.area-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.texture-btn {
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    border: none;
+    position: relative;
+
+    --bg-color: white;
+    background-color: var(--bg-color);
+}
+
+.texture-btn.active {
+    box-shadow: 0 0 1px 4px rgba(32, 77, 171, 0.55);
+}
+
+.texture-btn img {
+    width: 99%;
+    height: 99%;
+    border-radius: 50%;
+}
+
+.hidden {
+    display: none !important;
+}
