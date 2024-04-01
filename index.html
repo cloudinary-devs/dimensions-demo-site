@@ -24,8 +24,10 @@
     <link href="styles.css" rel="stylesheet">
 
     <script type="text/javascript">
+      if (!["localhost", "127.0.0.1"].find((h) => document.location.host.includes(h))) {
         window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=document.createElement("script");r.type="text/javascript",r.async=!0,r.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(r,a);for(var n=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],o=0;o<p.length;o++)heap[p[o]]=n(p[o])};
         heap.load("1831338868");
+      }
     </script>
 </head>
 <body>
@@ -99,6 +101,15 @@
                     <div class="item-description">
                         Gaming Chair 2024
                         <div class="item-price">$150.00</div>
+                    </div>
+                </a>
+                <a class="item-card" href="product/product.html?sku=barber-2">
+                    <div class="item-img">
+                        <img width="400" src="https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/f_auto,q_auto/w_400/v1711385025/barber-2/barber-chair-2-1711971466758-preset/furniture-port-front-right">
+                    </div>
+                    <div class="item-description">
+                        Barber Chair
+                        <div class="item-price">$1100.00</div>
                     </div>
                 </a>
             </div>
