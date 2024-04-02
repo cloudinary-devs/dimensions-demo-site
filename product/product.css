@@ -12,7 +12,7 @@
     gap: 2px;
 }
 
-.asset-img {
+.asset-img, .asset-video {
     position: relative;
     width: 500px;
     height: 550px;
@@ -28,6 +28,10 @@
     position: relative;
     overflow: hidden;
     cursor: zoom-in;
+}
+
+.product-video video{
+    width: 100%
 }
 
 .product-image img {
@@ -63,9 +67,17 @@
     height: 900px;
 }
 
-.no-templates .asset-img {
+.no-templates .asset {
     display: none;
  }
+
+.no-images .asset-img {
+    display: none;
+}
+
+.no-videos .asset-video {
+    display: none;
+}
 
 #three-d-container.show #three-d-viewer {
     opacity: 1;
@@ -76,6 +88,10 @@
     visibility: hidden;
     transition: opacity 250ms ease-in, visibility 1000ms;
     transition-delay: 100ms;
+}
+
+.no-templates #three-d-preview {
+    display: none;
 }
 
 #three-d-preview img {

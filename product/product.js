@@ -41,6 +41,7 @@ const PRODUCTS_INFO = {
 		price: "$700.00",
 		preset: "p-bag",
 		templates: ["bag-front", "bag-front-right", "bag-front-left", "bag-back"], // "bag-zoom"],
+		videoTemplates: ["bag-video"],
 	},
 	"barber-2": {
 		title: "Barber Chair",
@@ -194,38 +195,31 @@ function runDimensions(id) {
 		return;
 	}
 
+	//TODO: use the tag defaults config feature !!!! for product id & preset
 	document.getElementById("three-d-viewer")?.setAttribute("data-d8s-id", id);
-	document.querySelectorAll("div.product-image")
+	document.querySelectorAll("div.product-image, div.product-video")
 		?.forEach((img) => img.setAttribute("data-d8s-id", id));
-
-	const { templates } = PRODUCTS_INFO[sku];
-	const hasTemplates = !!templates?.length;
-
-	if (!hasTemplates) {
-		document.getElementById("three-d-preview").classList.add("hidden");
-		document.getElementById("three-d-container")?.classList.add("show");
-	}
 
 	const d8sApi = window._d8sApi = window.initDimensions({
 		account: "demo-site",
 		// account: "cloudinary-dimensions",
 		viewers: [
 			window.initDimensions.VIEWERS.IMAGE,
-			// window.initDimensions.VIEWERS.VIDEO,
+			window.initDimensions.VIEWERS.VIDEO,
 			window.initDimensions.VIEWERS.THREE_D,
 		],
 		imageViewer: {
 			params: {},
 			className: "my-ecomm-image",
 		},
-		// videoViewer: {
-		// 	params: {
-		// 		autoplay: true,
-		// 		volume: 0,
-		// 		loop: true,
-		// 	},
+		videoViewer: {
+			params: {
+				autoplay: true,
+				volume: 0,
+				loop: true,
+			},
 		// 	className: "my-ecomm-video",
-		// },
+		},
 		threeDViewer: {
 			viewer: {
 				controls: {
@@ -260,27 +254,50 @@ function runDimensions(id) {
 }
 
 function prepareHTML(sku) {
-	const { preset, templates } = PRODUCTS_INFO[sku];
-	const elements = document.getElementsByClassName("2d");
+	const { preset, templates, videoTemplates } = PRODUCTS_INFO[sku];
 	const ZOOM_IMAGE_URL = `https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/f_auto,q_auto,dpr_2,w_1000/${sku}/${preset}/`;
-	let idx = 0;
+	let hasImages = false, hasVideos = false;
 
 	if (templates?.length) {
+		hasImages = true;
+		const elements = document.getElementsByClassName("2d");
+		let idx = 0;
+
 		for (const el of elements) {
 			const zoomImageUrl = `${ZOOM_IMAGE_URL}${templates[idx]}`;
 			el.setAttribute("data-d8s-preset", preset);
 			el.setAttribute("data-d8s-name", templates[idx]);
 			el.addEventListener("touchstart", setZoomImage(zoomImageUrl));
 			el.addEventListener("mouseenter", setZoomImage(zoomImageUrl));
-			idx++;
+			idx+=1;
 		}
 
 		const previewImg = document.getElementById("three-d-preview");
 		previewImg.setAttribute("data-d8s-preset", preset);
 		previewImg.setAttribute("data-d8s-name", templates[0]);
 	} else {
-		//no templates for this product
+		//no image templates for this product
+		document.querySelector(".page-layout")
+			.classList.add("no-images");
+	}
 
+	if (videoTemplates?.length) {
+		hasVideos = true;
+		const elements = document.getElementsByClassName("vid");
+		let idx = 0;
+
+		for (const el of elements) {
+			el.setAttribute("data-d8s-preset", preset);
+			el.setAttribute("data-d8s-name", videoTemplates[idx]);
+			idx+=1;
+		}
+	} else {
+		//no video templates for this product
+		document.querySelector(".page-layout")
+			.classList.add("no-videos");
+	}
+
+	if (!hasImages && !hasVideos) {
 		document.querySelector(".page-layout")
 			.classList.add("no-templates");
 	}
