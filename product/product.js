@@ -194,6 +194,10 @@ function runDimensions(id) {
 	if (!id) {
 		return;
 	}
+const { templates, videoTemplates } =PRODUCTS_INFO[sku];
+
+	const hasTemplates = !!(templates?.length || videoTemplates?.length);
+
 
 	//TODO: use the tag defaults config feature !!!! for product id & preset
 	document.getElementById("three-d-viewer")?.setAttribute("data-d8s-id", id);
@@ -216,6 +220,7 @@ function runDimensions(id) {
 			params: {
 				autoplay: true,
 				volume: 0,
+				// controls: true,
 				loop: true,
 			},
 		// 	className: "my-ecomm-video",

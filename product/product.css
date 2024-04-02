@@ -83,6 +83,10 @@
     opacity: 1;
 }
 
+.no-templates  #three-d-viewer {
+    opacity: 1;
+}
+
 #three-d-container.show img {
     opacity: 0;
     visibility: hidden;
