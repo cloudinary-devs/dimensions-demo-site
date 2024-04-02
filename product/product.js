@@ -158,13 +158,25 @@ const PRODUCTS_INFO = {
 					},
 					{
 						name: "red sand",
-						preview: "#c50c45",
+						preview: "#64122b",
 						texture: {
 							url: "reset",
 							normalUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711972595/demo-site-assets/barber-chair-textures/legs/White%20Sand/White_Sand_Normal_lidn6a.jpg",
 							roughnessUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711972568/demo-site-assets/barber-chair-textures/legs/White%20Sand/White_Sand_Roughness_dsydib.jpg",
 							materialParams: {
-								color: ["rgb(218,46,46)"],
+								color: ["rgb(136,59,59)"],
+							}
+						}
+					},
+					{
+						name: "black sand",
+						preview: "#100101",
+						texture: {
+							url: "reset",
+							normalUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711972595/demo-site-assets/barber-chair-textures/legs/White%20Sand/White_Sand_Normal_lidn6a.jpg",
+							roughnessUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711972568/demo-site-assets/barber-chair-textures/legs/White%20Sand/White_Sand_Roughness_dsydib.jpg",
+							materialParams: {
+								color: ["rgb(16,1,1)"],
 							}
 						}
 					}
