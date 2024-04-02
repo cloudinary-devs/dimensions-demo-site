@@ -232,6 +232,10 @@ function runDimensions(id) {
 					position: "center",
 				},
 
+				rotation: {
+					offOnInteraction: true,
+				},
+
 				showLoadingProgress: !hasTemplates,
 
 				renderer: {
@@ -275,9 +279,10 @@ function prepareHTML(sku) {
 		previewImg.setAttribute("data-d8s-preset", preset);
 		previewImg.setAttribute("data-d8s-name", templates[0]);
 	} else {
-		for (const el of elements) {
-			el.parentElement.classList.add("hidden");
-		}
+		//no templates for this product
+
+		document.querySelector(".page-layout")
+			.classList.add("no-templates");
 	}
 }
 
