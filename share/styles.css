@@ -1,0 +1,257 @@
+* {
+    font-family: Montserrat;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+a, a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    min-height: 95px;
+    padding: 20px 80px 20px 80px;
+    background: white;
+    border-bottom: 1px solid #EBEFF1;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.footer {
+    display: none;
+}
+
+.flex-row {
+    display: flex;
+    align-items: center;
+}
+
+#site-header {
+    font-family: Abril Fatface;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 0px;
+    text-align: left;
+    margin: 0;
+    margin-right: 30px;
+    border-right: 1px solid #EBEFF1;
+    padding-right: 30px;
+}
+
+.demo-signature {
+    height: 55px;
+}
+
+a.signup-button {
+    width: 185px;
+    height: 42px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    background: #8859E2;
+    color: white;
+    text-align: center;
+}
+
+a.signup-button:hover {
+    background: #9966ff;
+}
+
+.content {
+    padding: 40px 80px 110px 80px;
+}
+
+#empty-message {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.hide {
+    display: none !important;
+}
+
+.show {
+    display: block;
+}
+
+@media only screen and (min-width: 1921px) {
+    .content {
+        max-width: 1920px;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .demo-signature {
+        display: none;
+    }
+
+    .footer {
+        display: block;
+        position: fixed;
+        text-align: center;
+        bottom: 0;
+        width: 100%;
+        height: 100px;
+        padding: 10px;
+        background: white;
+        border-top: 1px solid #EBEFF1;
+        border-bottom-width: 0;
+    }
+
+    .footer > img {
+        height: 100%;
+    }
+}
+
+.page-layout {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1800px;
+    margin: 40px auto;
+}
+
+#assets-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1002px;
+    gap: 2px;
+}
+
+.asset > div {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+}
+
+.asset-img, .asset-video {
+    position: relative;
+    width: 500px;
+    height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F6F6F6;
+    overflow: hidden;
+}
+
+.asset-img .product-image {
+    background-position: 50% 50%;
+    position: relative;
+    overflow: hidden;
+    cursor: zoom-in;
+}
+
+.product-video video{
+    width: 100%
+}
+
+.product-image img {
+    width: 100%;
+    max-height: 100%;
+}
+
+.product-image.hide-img img{
+    opacity: 0;
+    transition: opacity 100ms;
+}
+
+#three-d-viewer {
+    display: none;
+    width: 1002px;
+    height: 600px;
+    opacity: 1;
+    background: #F6F6F6;
+}
+
+#three-d-viewer.show {
+    display: block;
+}
+
+#product-details {
+    display: none;
+}
+
+#product-details.show {
+    display: flex !important;
+    flex-direction: column;
+    width: 400px;
+    padding: 0 10px 0 40px;
+    background: white;
+    position: sticky;
+    top: 120px;
+    align-self: flex-start;
+}
+
+.p-title {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 37px;
+    letter-spacing: 0px;
+    margin-bottom: 10px;
+}
+
+#title-mobile.p-title {
+    display: none;
+}
+
+.p-description {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0px;
+    margin-top: 25px;
+}
+
+@media only screen and (max-width: 1000px) {
+    .page-layout {
+        flex-direction: column;
+    }
+
+    #assets-container {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .asset-img {
+        width: 100%;
+        height: auto;
+    }
+
+    #title-desktop.p-title {
+        display: none;
+    }
+
+    #title-mobile.p-title.show {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    #product-details {
+        padding: 0;
+        margin-top: 40px;
+    }
+
+    .product-image img {
+        width: 100%;
+        height: 100%;
+    }
+
+    #three-d-container {
+        width: 100%;
+        max-height: 600px;
+    }
+
+    #three-d-viewer {
+        max-height: 600px;
+        width: 100%;
+    }
+}
