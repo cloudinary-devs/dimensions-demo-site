@@ -111,15 +111,12 @@ function prepareHTML() {
 	if (imageTemplates?.length || videoTemplates?.length || hasThreeD) {
 		document.getElementById("empty-message").classList.add("hide");
 		document.getElementById("product-details").classList.add("show");
-		document.getElementById("title-mobile").classList.add("show");
 	}
 }
 
 function setProductInfo() {
 	const desktopTitle = document.getElementById("title-desktop");
-	const mobileTitle = document.getElementById("title-mobile");
 	desktopTitle.innerHTML = name;
-	mobileTitle.innerHTML = name;
 }
 
 function preloadProductZoomImage() {
@@ -181,7 +178,7 @@ function copyUrl() {
 		.then(() => {
 			tooltip.innerText = "Copied!";
 			setTimeout(() => {
-				tooltip.innerText = "Copy this page's url";
+				tooltip.innerText = "Copy page URL";
 			}, 1000);
 		})
 		.catch(() => {
