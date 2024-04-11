@@ -32,11 +32,14 @@
 <body>
 <div>
   <div class="header">
-    <div class="flex-row">
-      <h1 id="site-header">Your Product</h1>
       <img class="demo-signature" src="https://res.cloudinary.com/prod/image/upload/dpr_2.0/dimensions-app/graphics/d8s-demo-by-logo.png" />
-    </div>
-    <a class="signup-button" href="https://dimensions.cloudinary.com/api/welcome-user/?utm_source=cloudinary&utm_medium=share-page&utm_campaign=top-button" target="_blank" rel="noopener noreferrer">Go to Dimensions</a>
+    <button id="share-button" class="tooltip" onclick="copyUrl()">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.375 10.5668C11.7961 10.5668 11.274 10.7728 10.878 11.1046L5.44939 8.20302C5.49126 8.04598 5.51792 7.88178 5.51792 7.71426C5.51792 7.54672 5.49126 7.38251 5.44939 7.22534L10.8206 4.35179C11.2284 4.70104 11.7732 4.91755 12.375 4.91755C13.6358 4.91755 14.6607 3.97838 14.6607 2.82256C14.6607 1.66686 13.6358 0.727552 12.375 0.727552C11.1141 0.727552 10.0893 1.66686 10.0893 2.82256C10.0893 2.99021 10.1158 3.15429 10.158 3.31146L4.78645 6.18488C4.37869 5.83576 3.83403 5.61925 3.23218 5.61925C1.97107 5.61925 0.946256 6.55856 0.946256 7.71426C0.946256 8.86994 1.97107 9.80925 3.23218 9.80925C3.83403 9.80925 4.37869 9.59274 4.78645 9.24349L10.215 12.1451C10.1769 12.2917 10.1539 12.4453 10.1539 12.6025C10.1539 13.7267 11.1484 14.638 12.375 14.638C13.6016 14.638 14.596 13.7267 14.596 12.6025C14.596 11.4781 13.6016 10.5668 12.375 10.5668Z" fill="#333B4C"/>
+      </svg>
+      <span>Share</span>
+      <span id="share-tooltip" class="tooltiptext">Copy this page's url</span>
+    </button>
   </div>
   <div class="content">
     <div class="page-layout">
@@ -54,7 +57,12 @@
       </div>
       <div id="product-details">
         <p id="title-desktop" class="p-title">Product Name Goes Here</p>
-        <p id="product-description" class="p-description">Dimensions helps eCommerce brands turn 3D models into engaging photos, videos, and 3D content powered by Cloudinary technology.</p>
+        <p id="product-price" class="p-price">$250.000</p>
+        <p id="product-description" class="p-description">
+          <span>Create 3D Product Configurators & Endless Visuals.</span><br/>
+          Dimensions helps eCommerce brands turn 3D models into engaging photos, videos, and 3D content powered by Cloudinary technology.
+        </p>
+        <a class="signup-button" href="https://dimensions.cloudinary.com/api/welcome-user/?utm_source=cloudinary&utm_medium=share-page&utm_campaign=top-button" target="_blank" rel="noopener noreferrer">Get Started with Dimensions</a>
         </div>
       </div>
     </div>

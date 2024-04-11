@@ -4,6 +4,25 @@
     margin: 0;
 }
 
+button {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 10px;
+}
+
+button:active {
+    outline: none;
+}
+
+button > svg {
+    margin-right: 8px;
+}
+
+button > svg > path {
+    fill: currentColor;
+}
+
 a, a:visited {
     text-decoration: none;
     color: inherit;
@@ -21,6 +40,15 @@ a, a:visited {
     position: sticky;
     top: 0;
     z-index: 10;
+}
+
+#share-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #3448C5;
 }
 
 .footer {
@@ -50,17 +78,21 @@ a, a:visited {
 }
 
 a.signup-button {
-    width: 185px;
-    height: 42px;
-    padding: 12px 20px;
+    width: 100%;
+    height: auto;
+    margin-top: 60px;
+    /*padding: 12px 20px;*/
     border-radius: 4px;
-    background: #8859E2;
+    background: #3448C5;
     color: white;
     text-align: center;
-}
+    /*width: Fill (243px)px;*/
+    /*height: Fixed (40px)px;*/
+    padding: 16px;
+    /*gap: 8px;*/
+    /*border-radius: 4px 0px 0px 0px;*/
+    /*opacity: 0px;*/
 
-a.signup-button:hover {
-    background: #9966ff;
 }
 
 .content {
@@ -203,12 +235,61 @@ a.signup-button:hover {
     display: none;
 }
 
-.p-description {
-    font-size: 14px;
+.p-price {
+    font-size: 20px;
     font-weight: 400;
-    line-height: 20px;
+    line-height: 24px;
     letter-spacing: 0px;
+}
+
+.p-description {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
     margin-top: 25px;
+}
+
+.p-description > span {
+    font-weight: 600;
+}
+
+.tooltip {
+    position: relative;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 150px;
+    font-size: 12px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #555 transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }
 
 @media only screen and (max-width: 1000px) {

@@ -116,10 +116,8 @@ function prepareHTML() {
 }
 
 function setProductInfo() {
-	const pageTitle = document.getElementById("site-header");
 	const desktopTitle = document.getElementById("title-desktop");
 	const mobileTitle = document.getElementById("title-mobile");
-	pageTitle.innerHTML = name + " - Product Page Demo";
 	desktopTitle.innerHTML = name;
 	mobileTitle.innerHTML = name;
 }
@@ -175,4 +173,18 @@ function decodeObjectString(str) {
 	const binString = atob(str);
 	const bytes = Uint8Array.from(binString, (m) => m.codePointAt(0));
 	return JSON.parse(new TextDecoder().decode(bytes) || "{}");
+}
+
+function copyUrl() {
+	const tooltip = document.getElementById("share-tooltip");
+	navigator.clipboard.writeText(window.location.href)
+		.then(() => {
+			tooltip.innerText = "Copied!";
+			setTimeout(() => {
+				tooltip.innerText = "Copy this page's url";
+			}, 1000);
+		})
+		.catch(() => {
+			console.warn('Could not copy url')
+		});
 }
