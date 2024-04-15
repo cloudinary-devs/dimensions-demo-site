@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dimensions Demo Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"/>
+    <style>
+        * {
+            font-family: "Inter", ui-sans-serif, sans-serif;
+        }
+        body {
+            margin: 0;
+        }
+        .page-layout {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            width: calc(100vw - 130px);
+        }
+
+        #three-d-viewer {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .product-details {
+            padding: 15px;
+            background: white;
+            position: absolute;
+            top: 50px;
+            right: -90px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.15);
+            opacity: 0;
+            transition: opacity 400ms ease-in-out;
+            transition-delay: 400ms;
+        }
+
+        #config-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .config-area {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .config-area label {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .area-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .texture-btn {
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            padding: 0;
+            margin: 0;
+            border: none;
+            position: relative;
+
+            --bg-color: white;
+            background-color: var(--bg-color);
+        }
+
+        .texture-btn.active {
+            box-shadow: 0 0 1px 4px #3347C5;
+        }
+
+        .texture-btn img {
+            width: 99%;
+            height: 99%;
+            border-radius: 50%;
+        }
+
+        .show {
+            opacity: 1;
+        }
+
+        @media (pointer: coarse)  {
+            .page-layout {
+                width: 100vw;
+            }
+
+            .product-details {
+                padding: 15px;
+                background: transparent;
+                position: unset;
+                top: 50px;
+                right: -90px;
+                border-radius: unset;
+                box-shadow: unset;
+            }
+
+            #config-container {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: start;
+                gap: 40px;
+            }
+
+            .config-area {
+                max-width: 49vw;
+            }
+
+            #three-d-viewer {
+                height: auto;
+                aspect-ratio: 1;
+            }
+        }
+    </style>
+    <script id="tag-script" src="https://dimensions-3d-viewer.cloudinary.com/all.js"></script>
+    <script src="https://dimensions-tag.cloudinary.com/all.js"></script>
+</head>
+<body>
+<div class="page-layout">
+    <div class="content">
+        <div
+                id="three-d-viewer"
+                class="d8s-container"
+                data-d8s-type="3d"
+        >
+        </div>
+    </div>
+    <div id ="product-details" class="product-details">
+        <div id="config-container">
+            <div class="config-area area-Fabric">
+                <label>Fabric</label>
+                <div class="area-buttons">
+                    <button id="swatch-cream" class="texture-btn active" title="cream" style="--bg-color: #e0ddd5;"></button>
+                    <button id="swatch-blue" class="texture-btn" title="blue"><img
+                            src="https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/q_auto,w_100/v1711385643/demo-site-assets/barber-chair-textures/fabric/Blue/Barber_Chair_Blue_Map_dp5rbh.jpg">
+                    </button>
+                    <button id="swatch-beige" class="texture-btn" title="beige"><img
+                            src="https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/q_auto,w_100/v1711385635/demo-site-assets/barber-chair-textures/fabric/Beige/Barber_Chair_Beige_Map_pglcaj.jpg">
+                    </button>
+                    <button id="swatch-brown" class="texture-btn" title="brown"><img
+                            src="https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/q_auto,w_100/v1711385635/demo-site-assets/barber-chair-textures/fabric/Brown/Barber_Chair_Brown_Map_u2yj5q.jpg">
+                    </button>
+                    <button id="swatch-grey" class="texture-btn" title="grey"><img
+                            src="https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/q_auto,w_100/v1711385635/demo-site-assets/barber-chair-textures/fabric/Grey/Barber_Chair_Grey_Map_bivtvc.jpg">
+                    </button>
+                </div>
+            </div>
+            <div class="config-area area-Legs">
+                <label>Legs</label>
+                <div class="area-buttons">
+                    <button id="swatch-metal" class="texture-btn active" title="metal" style="--bg-color: #b6b5b4;"></button>
+                    <button id="swatch-wood" class="texture-btn" title="wood"><img
+                            src="https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/q_auto,w_100/v1711385643/demo-site-assets/barber-chair-textures/legs/Wood/Wood_Map_flth30.jpg">
+                    </button>
+                    <button id="swatch-blue-sand" class="texture-btn" title="blue sand" style="--bg-color: #072048;"></button>
+                    <button id="swatch-red-sand" class="texture-btn" title="red sand" style="--bg-color: #64122b;"></button>
+                    <button id="swatch-black-sand" class="texture-btn" title="black sand" style="--bg-color: #100101;"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const PRODUCTS_INFO = {
+        "barber-2": {
+            title: "Barber Chair",
+            description: "A chair like no other",
+            price: "$1100.00",
+            preset: "barber-chair-2-1711971466758-preset",
+            // templates: ["furniture-port-front", "furniture-port-front-right", "furniture-port-left", "furniture-port-front-left"],
+            config: {
+                "Fabric": {
+                    mesh: "Scene_1.Barber_Chair002_Baked003",
+                    textures: [
+                        {
+                            name: "cream",
+                            preview: "#e0ddd5",
+                            texture: {
+                                reset: true,
+                            }
+                        },
+                        {
+                            name: "blue",
+                            preview: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/q_auto,w_100/v1711385643/demo-site-assets/barber-chair-textures/fabric/Blue/Barber_Chair_Blue_Map_dp5rbh.jpg",
+                            texture: {
+                                url: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711385643/demo-site-assets/barber-chair-textures/fabric/Blue/Barber_Chair_Blue_Map_dp5rbh.jpg",
+                                roughnessUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711385638/demo-site-assets/barber-chair-textures/fabric/Blue/Barber_Chair_Blue_Roughness_dynqki.jpg",
+	                            aoUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1712746593/demo-site-assets/barber-chair-textures/fabric/Barber_Chair_AO_slxqpw.jpg",
+                                textureParams: {
+                                    repeat: 1,
+                                    flipY: false,
+                                },
+                                materialParams: {
+                                    roughness: 1,
+	                                aoMapIntensity: 0.6,
+                                },
+                            },
+                        },
+                        {
+                            name: "beige",
+                            preview: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/q_auto,w_100/v1711385635/demo-site-assets/barber-chair-textures/fabric/Beige/Barber_Chair_Beige_Map_pglcaj.jpg",
+                            texture: {
+                                url: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711970817/demo-site-assets/barber-chair-textures/fabric/Beige/Barber_Chair_Beige_Map_pglcaj.jpg",
+                                roughnessUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711970835/demo-site-assets/barber-chair-textures/fabric/Beige/Barber_Chair_Beige_Roughness_bxgco9.jpg",
+	                            aoUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1712746593/demo-site-assets/barber-chair-textures/fabric/Barber_Chair_AO_slxqpw.jpg",
+                                textureParams: {
+                                    repeat: 1,
+                                    flipY: false,
+                                },
+                                materialParams: {
+                                    roughness: 1,
+	                                aoMapIntensity: 0.6,
+                                },
+                            },
+                        },
+                        {
+                            name: "brown",
+                            preview: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/q_auto,w_100/v1711385635/demo-site-assets/barber-chair-textures/fabric/Brown/Barber_Chair_Brown_Map_u2yj5q.jpg",
+                            texture: {
+                                url: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711385635/demo-site-assets/barber-chair-textures/fabric/Brown/Barber_Chair_Brown_Map_u2yj5q.jpg",
+                                roughnessUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711385642/demo-site-assets/barber-chair-textures/fabric/Brown/Barber_Chair_Brown_Roughness_zx9ket.jpg",
+	                            aoUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1712746593/demo-site-assets/barber-chair-textures/fabric/Barber_Chair_AO_slxqpw.jpg",
+                                textureParams: {
+                                    repeat: 1,
+                                    flipY: false,
+                                },
+                                materialParams: {
+                                    roughness: 1,
+	                                aoMapIntensity: 0.6,
+                                },
+                            },
+                        },
+                        {
+                            name: "grey",
+                            preview: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/q_auto,w_100/v1711385635/demo-site-assets/barber-chair-textures/fabric/Grey/Barber_Chair_Grey_Map_bivtvc.jpg",
+                            texture: {
+                                url: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711385641/demo-site-assets/barber-chair-textures/fabric/Grey/Barber_Chair_Grey_Map_bivtvc.jpg",
+                                roughnessUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711385636/demo-site-assets/barber-chair-textures/fabric/Grey/Barber_Chair_Grey_Roughness_hx2hwg.jpg",
+	                            aoUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1712746593/demo-site-assets/barber-chair-textures/fabric/Barber_Chair_AO_slxqpw.jpg",
+                                textureParams: {
+                                    repeat: 1,
+                                    flipY: false,
+                                },
+                                materialParams: {
+                                    roughness: 1,
+	                                aoMapIntensity: 0.6,
+                                },
+                            },
+                        },
+                    ],
+                },
+                "Legs": {
+                    mesh: "Scene_1.Barber_Chair013_Baked001.Barber_Chair013",
+                    textures: [
+                        {
+                            name: "metal",
+                            preview: "#b6b5b4",
+                            texture: {
+                                reset: true,
+                            }
+                        },
+                        {
+                            name: "wood",
+                            preview: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/q_auto,w_100/v1711385643/demo-site-assets/barber-chair-textures/legs/Wood/Wood_Map_flth30.jpg",
+                            texture: {
+                                url: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711972581/demo-site-assets/barber-chair-textures/legs/Wood/Wood_Map_flth30.jpg",
+                                roughnessUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711972575/demo-site-assets/barber-chair-textures/legs/Wood/Wood_Roughness_ydsxzu.jpg",
+                                normalUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711972587/demo-site-assets/barber-chair-textures/legs/Wood/Wood_Normal_e1ysmo.png",
+                                materialParams: {
+                                    color: [""],
+                                }
+                            },
+                        },
+                        {
+                            name: "blue sand",
+                            preview: "#072048",
+                            texture: {
+                                url: "reset",
+                                normalUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711972595/demo-site-assets/barber-chair-textures/legs/White%20Sand/White_Sand_Normal_lidn6a.jpg",
+                                roughnessUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711972568/demo-site-assets/barber-chair-textures/legs/White%20Sand/White_Sand_Roughness_dsydib.jpg",
+                                materialParams: {
+                                    color: ["rgb(87, 114, 157)"],
+                                }
+                            }
+                        },
+                        {
+                            name: "red sand",
+                            preview: "#64122b",
+                            texture: {
+                                url: "reset",
+                                normalUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711972595/demo-site-assets/barber-chair-textures/legs/White%20Sand/White_Sand_Normal_lidn6a.jpg",
+                                roughnessUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711972568/demo-site-assets/barber-chair-textures/legs/White%20Sand/White_Sand_Roughness_dsydib.jpg",
+                                materialParams: {
+                                    color: ["rgb(136,59,59)"],
+                                }
+                            }
+                        },
+                        {
+                            name: "black sand",
+                            preview: "#100101",
+                            texture: {
+                                url: "reset",
+                                normalUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711972595/demo-site-assets/barber-chair-textures/legs/White%20Sand/White_Sand_Normal_lidn6a.jpg",
+                                roughnessUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711972568/demo-site-assets/barber-chair-textures/legs/White%20Sand/White_Sand_Roughness_dsydib.jpg",
+                                materialParams: {
+                                    color: ["rgb(16,1,1)"],
+                                }
+                            }
+                        }
+                    ],
+                },
+            },
+        },
+    };
+
+    const sku = "barber-2";
+    const texturesToPreload = [];
+    let resolveFn;
+    new Promise((resolve) => {
+        resolveFn = resolve;
+    }).then(preloadTextureImages);
+    runDimensions(sku);
+    showConfigurator(sku);
+
+    function runDimensions(id) {
+        //TODO: use the tag defaults config feature !!!! for product id & preset
+        document.getElementById("three-d-viewer")?.setAttribute("data-d8s-id", id);
+
+        const d8sApi = window._d8sApi = window.initDimensions({
+            account: "demo-site",
+            // account: "cloudinary-dimensions",
+            viewers: [
+                window.initDimensions.VIEWERS.THREE_D,
+            ],
+            threeDViewer: {
+                viewer: {
+                    controls: {
+                        enabled: false,
+                    },
+
+                    rotation: {
+                        offOnInteraction: true,
+                    },
+
+                    showLoadingProgress: true,
+
+                    renderer: {
+                        debug: {
+                            // printStructure: true,
+                        },
+                    },
+                },
+            },
+        });
+
+        d8sApi?.on((event, ...args) => {
+            const data = args[0];
+            if (data?.type === "MODEL_LOADED") {
+                document.getElementById("product-details")?.classList.add("show");
+                resolveFn(texturesToPreload);
+            }
+        });
+    }
+
+    function showConfigurator(sku) {
+        const applyTexture = (button, areaId, area, texture) => {
+            window._d8sApi.update3d(
+                document.getElementById("three-d-viewer"),
+                {
+                    textures: [texture],
+                    currentTexture: [
+                        {name: area.mesh, texture: 0}
+                    ]
+                }
+            );
+
+            const currentActive = document.querySelector(`.${areaId} .active`);
+            currentActive.classList.remove("active");
+            button.classList.add("active");
+        };
+
+        Object.entries(PRODUCTS_INFO[sku].config)
+            .forEach(([title, area]) => {
+                const areaId = `area-${title.replaceAll(" ", "-")}`;
+                area.textures.forEach(({name, preview, texture}, index) => {
+                    const id = name.replaceAll(" ", "-");
+                    const textureElm = document.getElementById(`swatch-${id}`);
+                    textureElm.addEventListener("click", () => applyTexture(textureElm, areaId, area, texture))
+
+                    if (index === 0) {
+                        textureElm.classList.add("active");
+                    }
+
+                    texturesToPreload.push(texture);
+                });
+            });
+    }
+
+    function preloadTextureImages(textures) {
+        setTimeout(() => {
+            textures.forEach((texture) => {
+                if (texture.url?.startsWith('http')) {
+                    const image = new Image();
+                    image.src = texture.url;
+                }
+                if (texture.normalUrl?.startsWith('http')) {
+                    const image = new Image();
+                    image.src = texture.normalUrl;
+                }
+                if (texture.roughnessUrl?.startsWith('http')) {
+                    const image = new Image();
+                    image.src = texture.roughnessUrl;
+                }
+            });
+        }, 0);
+    }
+</script>
+</body>
+</html>
