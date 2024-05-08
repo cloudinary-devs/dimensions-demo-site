@@ -62,7 +62,7 @@ const PRODUCTS_INFO = {
 					},
 					{
 						name: "blue",
-						preview: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/q_auto,w_100/v1711385643/demo-site-assets/barber-chair-textures/fabric/Blue/Barber_Chair_Blue_Map_dp5rbh.jpg",
+						preview: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/w_200,h_200,c_crop,x_0,y_400,q_auto/v1711385643/demo-site-assets/barber-chair-textures/fabric/Blue/Barber_Chair_Blue_Map_dp5rbh.jpg",
 						config: {
 							url: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711385643/demo-site-assets/barber-chair-textures/fabric/Blue/Barber_Chair_Blue_Map_dp5rbh.jpg",
 							roughnessUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711385638/demo-site-assets/barber-chair-textures/fabric/Blue/Barber_Chair_Blue_Roughness_dynqki.jpg",
@@ -79,7 +79,7 @@ const PRODUCTS_INFO = {
 					},
 					{
 						name: "beige",
-						preview: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/q_auto,w_100/v1711385635/demo-site-assets/barber-chair-textures/fabric/Beige/Barber_Chair_Beige_Map_pglcaj.jpg",
+						preview: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/w_200,h_200,c_crop,x_0,y_400,q_auto/v1711970817/demo-site-assets/barber-chair-textures/fabric/Beige/Barber_Chair_Beige_Map_pglcaj.jpg",
 						config: {
 							url: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711970817/demo-site-assets/barber-chair-textures/fabric/Beige/Barber_Chair_Beige_Map_pglcaj.jpg",
 							roughnessUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711970835/demo-site-assets/barber-chair-textures/fabric/Beige/Barber_Chair_Beige_Roughness_bxgco9.jpg",
@@ -96,7 +96,7 @@ const PRODUCTS_INFO = {
 					},
 					{
 						name: "brown",
-						preview: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/q_auto,w_100/v1711385635/demo-site-assets/barber-chair-textures/fabric/Brown/Barber_Chair_Brown_Map_u2yj5q.jpg",
+						preview: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/w_200,h_200,c_crop,x_0,y_400,q_auto/v1711385635/demo-site-assets/barber-chair-textures/fabric/Brown/Barber_Chair_Brown_Map_u2yj5q.jpg",
 						config: {
 							url: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711385635/demo-site-assets/barber-chair-textures/fabric/Brown/Barber_Chair_Brown_Map_u2yj5q.jpg",
 							roughnessUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711385642/demo-site-assets/barber-chair-textures/fabric/Brown/Barber_Chair_Brown_Roughness_zx9ket.jpg",
@@ -113,7 +113,7 @@ const PRODUCTS_INFO = {
 					},
 					{
 						name: "grey",
-						preview: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/q_auto,w_100/v1711385635/demo-site-assets/barber-chair-textures/fabric/Grey/Barber_Chair_Grey_Map_bivtvc.jpg",
+						preview: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/w_200,h_200,c_crop,x_0,y_400,q_auto/v1711385641/demo-site-assets/barber-chair-textures/fabric/Grey/Barber_Chair_Grey_Map_bivtvc.jpg",
 						config: {
 							url: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711385641/demo-site-assets/barber-chair-textures/fabric/Grey/Barber_Chair_Grey_Map_bivtvc.jpg",
 							roughnessUrl: "https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/v1711385636/demo-site-assets/barber-chair-textures/fabric/Grey/Barber_Chair_Grey_Roughness_hx2hwg.jpg",
