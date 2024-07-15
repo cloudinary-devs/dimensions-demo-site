@@ -3,8 +3,9 @@ const searchParams = window.location.search
 	.split("&")
 	.map((pair) => pair.split("="));
 const data = decodeObjectString(searchParams.filter(([key, value]) => key === "d")?.[0]?.[1] || "");
-const { name, sku, preset, account, imageTemplates, videoTemplates, hasThreeD } = data;
-const ASSET_BASE_URL = `https://dimensions-art.cloudinary.net/d8s-${account}/`;
+const { name, sku, preset, account, imageTemplates, videoTemplates, hasThreeD, environment } = data;
+const BASE_URL = environment !== "production" ? "https://res.cloudinary.com/" : "https://dimensions-art.cloudinary.net/";
+const ASSET_BASE_URL = `${BASE_URL}${account}/`;
 
 if (!sku || !preset || !account) {
 	!sku && console.error("No product SKU present!");
@@ -59,6 +60,9 @@ function runDimensions() {
 				},
 			},
 		},
+		accountPrefix: "",
+		baseUrl: BASE_URL,
+		apiUrl: `https://api${environment !== "production" ? "-staging" : ""}.dimensions.cloudinary.com/`,
 	});
 }
 
