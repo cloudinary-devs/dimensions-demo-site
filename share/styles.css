@@ -262,6 +262,38 @@ a.signup-button {
     opacity: 1;
 }
 
+.asset .error-message {
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.asset.asset-error .error-message {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.asset.asset-error .product-image, .asset.asset-error .product-video {
+    width: 0;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.error-bold {
+    font-size: 16px;
+    font-weight: 600;
+}
+
 @media only screen and (max-width: 1000px) {
     .header {
         display: none;

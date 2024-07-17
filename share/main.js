@@ -7,6 +7,8 @@ const { name, sku, preset, account, imageTemplates, videoTemplates, hasThreeD, e
 const BASE_URL = environment !== "production" ? "https://res.cloudinary.com/" : "https://dimensions-art.cloudinary.net/";
 const ASSET_BASE_URL = `${BASE_URL}${account}/`;
 
+document.addEventListener("error", handleAssetLoadError, true);
+
 if (!sku || !preset || !account) {
 	!sku && console.error("No product SKU present!");
 	!preset && console.error("No product preset present!");
@@ -28,6 +30,7 @@ function runDimensions() {
 	}
 	if (hasThreeD) {
 		VIEWERS.push(window.initDimensions.VIEWERS.THREE_D);
+		document.getElementById("three-d-container").classList.remove("hide");
 		document.getElementById("three-d-viewer").setAttribute("data-d8s-id", sku);
 		document.getElementById("three-d-viewer").classList.add("show");
 	}
@@ -91,6 +94,21 @@ function createAssetElement(templateName, isVideo = false) {
 	return assetElement;
 }
 
+function createErrorMessage(isVideo = false) {
+	const errorElement = document.createElement("div");
+	errorElement.classList.add("error-message");
+	const p1 = document.createElement("p");
+	const p2 = document.createElement("p");
+	p1.innerText = `Generating ${isVideo ? "video" : "image"}...`;
+	p1.classList.add("error-bold")
+	p2.innerText = "Please refresh the page in a few seconds";
+
+	errorElement.appendChild(p1);
+	errorElement.appendChild(p2);
+
+	return errorElement;
+}
+
 function getZoomImageUrl() {
 	return `${ASSET_BASE_URL}image/upload/f_auto,q_auto,dpr_2,w_1000/${sku}/${preset}/`;
 }
@@ -102,6 +120,7 @@ function prepareHTML() {
 		const container = document.createElement("div");
 		container.classList.add("asset", "asset-img");
 		container.appendChild(createAssetElement(templateName));
+		container.appendChild(createErrorMessage());
 		assetsContainer.appendChild(container);
 	});
 
@@ -109,6 +128,7 @@ function prepareHTML() {
 		const container = document.createElement("div");
 		container.classList.add("asset", "asset-video");
 		container.appendChild(createAssetElement(templateName, true));
+		container.appendChild(createErrorMessage(true));
 		assetsContainer.appendChild(container);
 	});
 
@@ -188,4 +208,12 @@ function copyUrl() {
 		.catch(() => {
 			console.warn('Could not copy url')
 		});
+}
+
+function handleAssetLoadError(e){
+	if (e.target.nodeName === 'IMG' || e.target.nodeName === 'VIDEO') {
+		if (e.target.parentElement?.parentElement?.classList.contains('asset')) {
+			e.target.parentElement.parentElement.classList.add('asset-error');
+		}
+	}
 }
