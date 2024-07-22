@@ -5,7 +5,8 @@ const searchParams = window.location.search
 const data = decodeObjectString(searchParams.filter(([key, value]) => key === "d")?.[0]?.[1] || "");
 const { name, sku, preset, account, imageTemplates, videoTemplates, hasThreeD, environment } = data;
 const BASE_URL = environment !== "production" ? "https://res.cloudinary.com/" : "https://dimensions-art.cloudinary.net/";
-const ASSET_BASE_URL = `${BASE_URL}${account}/`;
+const accountWithPrefix = getAccountWithPrefix(account);
+const ASSET_BASE_URL = `${BASE_URL}${accountWithPrefix}/`;
 
 document.addEventListener("error", handleAssetLoadError, true);
 
@@ -216,4 +217,8 @@ function handleAssetLoadError(e){
 			e.target.parentElement.parentElement.classList.add('asset-error');
 		}
 	}
+}
+
+function getAccountWithPrefix(account) {
+	return account.startsWith("d8s-") ? account : "d8s-" + account;
 }
