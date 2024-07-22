@@ -37,7 +37,7 @@ function runDimensions() {
 	}
 
 	window._d8sApi = window.initDimensions({
-		account: account,
+		account: accountWithPrefix,
 		viewers: VIEWERS,
 		imageViewer: {
 			params: {},
