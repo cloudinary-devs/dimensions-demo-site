@@ -37,7 +37,7 @@ function runDimensions() {
 	}
 
 	window._d8sApi = window.initDimensions({
-		account: accountWithPrefix,
+		account: account,
 		viewers: VIEWERS,
 		imageViewer: {
 			params: {},
@@ -64,7 +64,7 @@ function runDimensions() {
 				},
 			},
 		},
-		accountPrefix: "",
+		accountPrefix: account.startsWith("d8s-") ? "" : "d8s",
 		baseUrl: BASE_URL,
 		apiUrl: `https://api${environment !== "production" ? "-staging" : ""}.dimensions.cloudinary.com/`,
 	});
