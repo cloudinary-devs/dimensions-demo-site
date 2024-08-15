@@ -297,6 +297,7 @@ const { templates, videoTemplates } =PRODUCTS_INFO[sku];
 			},
 		},
 		// baseUrl: "https://res.cloudinary.com/",
+		report: false,
 	});
 
 	const unregister = d8sApi?.on((event, ...args) => {
