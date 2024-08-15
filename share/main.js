@@ -67,6 +67,7 @@ function runDimensions() {
 		accountPrefix: account.startsWith("d8s-") ? "" : "d8s",
 		baseUrl: BASE_URL,
 		apiUrl: `https://api${environment !== "production" ? "-staging" : ""}.dimensions.cloudinary.com/`,
+		report: false,
 	});
 }
 
