@@ -68,7 +68,11 @@ function removeZoomImage(e) {
 
 function playVideo() {
 	const player = document.getElementById("video-player");
-	const playButton = document.getElementById("play-button");
 	player.play();
+	hidePlayButton();
+}
+
+function hidePlayButton() {
+	const playButton = document.getElementById("play-button");
 	playButton.style.display = "none";
 }
