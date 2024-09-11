@@ -46,7 +46,29 @@
       <div class="assets-container">
 
         <div class="asset asset-video" style="width: auto">
-          <video autoplay loop controls src="https://dimensions-art.cloudinary.net/d8s-demo-site/video/upload/w_1002/p-yellow-sofa/yellow_sofa.mp4.mp4"></video>
+          <video
+                  autoplay
+                  loop
+                  id="video-player"
+                  src="https://dimensions-art.cloudinary.net/d8s-demo-site/video/upload/w_1002/p-yellow-sofa/yellow_sofa.mp4.mp4"
+                  onclick="playVideo()"
+          ></video>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            style="width: 100px; height: 100px; color: white; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer;"
+            fill="white"
+            viewBox="0 0 24 24"
+            stroke="1"
+            onclick="playVideo()"
+            id="play-button"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="0"
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"
+            />
+          </svg>
         </div>
 
         <div class="asset asset-img">

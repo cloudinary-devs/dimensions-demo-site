@@ -65,3 +65,10 @@ function removeZoomImage(e) {
 	container.style.backgroundImage = "none";
 	container.classList.remove("hide-img");
 }
+
+function playVideo() {
+	const player = document.getElementById("video-player");
+	const playButton = document.getElementById("play-button");
+	player.play();
+	playButton.style.display = "none";
+}
