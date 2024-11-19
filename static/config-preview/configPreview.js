@@ -273,6 +273,7 @@ function runDimensions(id) {
 			},
 		},
 		// baseUrl: "https://res.cloudinary.com/",
+		apiUrl: "https://api.dimensions.cloudinary.com/",
 		report: false,
 	});
 }
