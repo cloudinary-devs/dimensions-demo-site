@@ -188,7 +188,7 @@
 
 
 #config-container {
-    margin-top: 25px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -320,7 +320,7 @@
     width: fit-content;
     padding: 14px 30px;
     border-color: gray;
-    margin-top: 25px;
+    margin-top: 30px;
 }
 
 .modal {

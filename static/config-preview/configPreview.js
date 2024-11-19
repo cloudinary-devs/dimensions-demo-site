@@ -259,6 +259,7 @@ function runDimensions(id) {
 				],
 				takeScreenshot: true,
 				controls: {
+					ar: false,
 					position: "center",
 				},
 
@@ -407,7 +408,7 @@ function resetModalCanvas() {
 let firstTimeOpen = true;
 function onModalOpen (){
 	// resetModalCanvas();
-	const periodMs = firstTimeOpen ? 1_000 : 700;
+	const periodMs = firstTimeOpen ? 2_500 : 700;
 	firstTimeOpen = false;
 	canvasContainer.style.width = "100%";
 	canvasContainer.style.height = "100%";
