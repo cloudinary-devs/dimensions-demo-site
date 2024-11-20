@@ -23,6 +23,10 @@
     overflow: hidden;
 }
 
+.asset-video, .asset-video video {
+    width: 100%;
+}
+
 .asset-img .product-image {
     background-position: 50% 50%;
     position: relative;
