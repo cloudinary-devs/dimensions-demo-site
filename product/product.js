@@ -7,13 +7,13 @@ const PRODUCTS_INFO = {
 		preset: "p-watch1",
 		templates: ["watch-front", "watch-right", "watch-front-right", "watch-front-left"], //, "watch-back"],
 	},
-	"p-667": {
-		title: "Laptop Pro Model",
-		description: "Elevate your productivity with our cutting-edge laptop, seamlessly blending power and portability. Crafted with precision, it boasts a sleek design, vibrant display, and lightning-fast performance to meet your every digital need.",
-		price: "$590.00",
-		preset: "p-laptop",
-		templates: ["laptop-front", "laptop-right", "laptop-left", "laptop-top"], //, "laptop-back"],
-	},
+	// "p-667": {
+	// 	title: "Laptop Pro Model",
+	// 	description: "Elevate your productivity with our cutting-edge laptop, seamlessly blending power and portability. Crafted with precision, it boasts a sleek design, vibrant display, and lightning-fast performance to meet your every digital need.",
+	// 	price: "$590.00",
+	// 	preset: "p-laptop",
+	// 	templates: ["laptop-front", "laptop-right", "laptop-left", "laptop-top"], //, "laptop-back"],
+	// },
 	"f-567-g": {
 		title: "Gaming Chair 2024",
 		description: "Immerse yourself in gaming nirvana with our ergonomic gaming chair. Designed for comfort and performance, it offers adjustable features, lumbar support, and a sleek aesthetic to enhance your gaming experience. Conquer virtual worlds in style and comfort.",
@@ -21,13 +21,13 @@ const PRODUCTS_INFO = {
 		preset: "p-chair",
 		templates: ["chair-front", "chair-front-right", "chair-front-left", "chair-back"], //, "chair-zoom"],
 	},
-	"a-123cm": {
-		title: "Automatic Coffee Machine",
-		description: "Indulge in the art of coffee with our automatic coffee machine. Effortlessly brew barista-quality coffee at the touch of a button, bringing the cafe experience into the comfort of your home. Start your day with the perfect cup, every time.",
-		price: "$340.00",
-		preset: "p-appliance",
-		templates: ["appliance-port-front", "appliance-port-front-right", "appliance-port-front-left", "appliance-port-back"], // "appliance-port-top"],
-	},
+	// "a-123cm": {
+	// 	title: "Automatic Coffee Machine",
+	// 	description: "Indulge in the art of coffee with our automatic coffee machine. Effortlessly brew barista-quality coffee at the touch of a button, bringing the cafe experience into the comfort of your home. Start your day with the perfect cup, every time.",
+	// 	price: "$340.00",
+	// 	preset: "p-appliance",
+	// 	templates: ["appliance-port-front", "appliance-port-front-right", "appliance-port-front-left", "appliance-port-back"], // "appliance-port-top"],
+	// },
 	"f-123b": {
 		title: "Lounge Armchair",
 		description: "Transform your space into a haven of relaxation with our plush lounge armchair. Sink into luxury as the ergonomic design cradles you in comfort. Whether reading a book or unwinding after a long day, this armchair is the epitome of leisure.",
