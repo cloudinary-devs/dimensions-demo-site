@@ -364,10 +364,10 @@ function setProductInfo(id) {
 	const mobileTitle = document.getElementById("title-mobile");
 	const description = document.getElementById("product-description");
 	const price = document.getElementById("product-price");
-	desktopTitle.innerHTML = PRODUCTS_INFO[id].title;
-	mobileTitle.innerHTML = PRODUCTS_INFO[id].title;
-	description.innerHTML = PRODUCTS_INFO[id].description;
-	price.innerHTML = PRODUCTS_INFO[id].price;
+	desktopTitle.innerText = PRODUCTS_INFO[id].title;
+	mobileTitle.innerText = PRODUCTS_INFO[id].title;
+	description.innerText = PRODUCTS_INFO[id].description;
+	price.innerText = PRODUCTS_INFO[id].price;
 }
 
 function preloadProductZoomImage(id) {
