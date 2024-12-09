@@ -142,7 +142,7 @@ function prepareHTML() {
 
 function setProductInfo() {
 	const desktopTitle = document.getElementById("title-desktop");
-	desktopTitle.innerHTML = name;
+	desktopTitle.innerText = name;
 }
 
 function preloadProductZoomImage() {
