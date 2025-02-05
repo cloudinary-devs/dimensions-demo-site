@@ -71,26 +71,34 @@ function runDimensions() {
 	});
 }
 
-function createAssetElement(templateName, isVideo = false) {
-	const zoomImageUrl = `${getZoomImageUrl()}${templateName}`;
+function createAssetElement(url, isVideo = false) {
 	const assetElement = document.createElement("div");
 
-	assetElement.setAttribute("data-d8s-url-params", "f_auto,w_1000");
-	assetElement.setAttribute("data-d8s-preset", preset);
-	assetElement.setAttribute("data-d8s-name", templateName);
-	assetElement.setAttribute("data-d8s-id", sku);
-
 	if (isVideo) {
-		assetElement.setAttribute("data-d8s-type", "video");
 		assetElement.classList.add("product-video", "vid");
+		const videoElement = document.createElement("video");
+		videoElement.setAttribute("width", "100%")
+		videoElement.setAttribute("muted", "true")
+		videoElement.setAttribute("autoplay", "true")
+		videoElement.setAttribute("loop", "true")
+		videoElement.setAttribute("controls", "true")
+		videoElement.src = url;
+
+		assetElement.appendChild(videoElement);
+
 	} else {
+		const imgElement = document.createElement("img");
+		imgElement.src = url;
+
 		assetElement.classList.add("product-image", "2d");
 		assetElement.addEventListener("mousemove", zoom);
 		assetElement.addEventListener("touchmove", zoom);
 		assetElement.addEventListener("mouseleave", removeZoomImage);
 		assetElement.addEventListener("touchend", removeZoomImage);
-		assetElement.addEventListener("touchstart", setZoomImage(zoomImageUrl));
-		assetElement.addEventListener("mouseenter", setZoomImage(zoomImageUrl));
+		assetElement.addEventListener("touchstart", setZoomImage(url));
+		assetElement.addEventListener("mouseenter", setZoomImage(url));
+
+		assetElement.appendChild(imgElement);
 	}
 
 	return assetElement;
@@ -118,18 +126,18 @@ function getZoomImageUrl() {
 function prepareHTML() {
 	const assetsContainer = document.getElementById("assets-container");
 
-	imageTemplates?.forEach((templateName) => {
+	imageTemplates?.forEach((artifactUrl) => {
 		const container = document.createElement("div");
 		container.classList.add("asset", "asset-img");
-		container.appendChild(createAssetElement(templateName));
+		container.appendChild(createAssetElement(artifactUrl));
 		container.appendChild(createErrorMessage());
 		assetsContainer.appendChild(container);
 	});
 
-	videoTemplates?.forEach((templateName) => {
+	videoTemplates?.forEach((artifactsUrl) => {
 		const container = document.createElement("div");
 		container.classList.add("asset", "asset-video");
-		container.appendChild(createAssetElement(templateName, true));
+		container.appendChild(createAssetElement(artifactsUrl, true));
 		container.appendChild(createErrorMessage(true));
 		assetsContainer.appendChild(container);
 	});
