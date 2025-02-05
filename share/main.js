@@ -3,22 +3,18 @@ const searchParams = window.location.search
 	.split("&")
 	.map((pair) => pair.split("="));
 const data = decodeObjectString(searchParams.filter(([key, value]) => key === "d")?.[0]?.[1] || "");
-const { name, sku, preset, account, imageTemplates, videoTemplates, hasThreeD, environment } = data;
-const BASE_URL = environment !== "production" ? "https://res.cloudinary.com/" : "https://dimensions-art.cloudinary.net/";
-const accountWithPrefix = getAccountWithPrefix(account);
-const ASSET_BASE_URL = `${BASE_URL}${accountWithPrefix}/`;
+const { name, sku, preset, cloudName, imageTemplates, videoTemplates, hasThreeD, environment } = data;
 
 document.addEventListener("error", handleAssetLoadError, true);
 
-if (!sku || !preset || !account) {
+if (!sku || !preset || !cloudName) {
 	!sku && console.error("No product SKU present!");
 	!preset && console.error("No product preset present!");
-	!account && console.error("No account name present!");
+	!cloudName && console.error("No cloudName present!");
 } else {
 	prepareHTML();
 	setProductInfo();
 	runDimensions();
-	preloadProductZoomImage();
 }
 
 function runDimensions() {
@@ -37,7 +33,7 @@ function runDimensions() {
 	}
 
 	window._d8sApi = window.initDimensions({
-		account: account,
+		cloudName: cloudName,
 		viewers: VIEWERS,
 		imageViewer: {
 			params: {},
@@ -64,8 +60,6 @@ function runDimensions() {
 				},
 			},
 		},
-		accountPrefix: account.startsWith("d8s-") ? "" : "d8s",
-		baseUrl: BASE_URL,
 		apiUrl: `https://api${environment !== "production" ? "-staging" : ""}.dimensions.cloudinary.com/`,
 		report: false,
 	});
@@ -119,10 +113,6 @@ function createErrorMessage(isVideo = false) {
 	return errorElement;
 }
 
-function getZoomImageUrl() {
-	return `${ASSET_BASE_URL}image/upload/f_auto,q_auto,dpr_2,w_1000/${sku}/${preset}/`;
-}
-
 function prepareHTML() {
 	const assetsContainer = document.getElementById("assets-container");
 
@@ -151,17 +141,6 @@ function prepareHTML() {
 function setProductInfo() {
 	const desktopTitle = document.getElementById("title-desktop");
 	desktopTitle.innerText = name;
-}
-
-function preloadProductZoomImage() {
-	setTimeout(() => {
-		const ZOOM_IMAGE_URL = getZoomImageUrl();
-
-		imageTemplates?.forEach((templateName) => {
-			const image = new Image();
-			image.src = ZOOM_IMAGE_URL + templateName;
-		});
-	}, 2000);
 }
 
 function zoom(e) {
@@ -226,8 +205,4 @@ function handleAssetLoadError(e){
 			e.target.parentElement.parentElement.classList.add('asset-error');
 		}
 	}
-}
-
-function getAccountWithPrefix(account) {
-	return account.startsWith("d8s-") ? account : "d8s-" + account;
 }
