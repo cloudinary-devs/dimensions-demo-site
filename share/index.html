@@ -23,8 +23,47 @@
   <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
   <link href="styles.css" rel="stylesheet">
-  <script id="tag-script" src="https://dimensions-3d-viewer.cloudinary.com/all.js"></script>
-  <script src="https://dimensions-tag.cloudinary.com/all.js"></script>
+  <script>
+    // load scripts without sending cookies to prevent headers too large error
+    (function() {
+      var viewerScript = document.createElement("script");
+      viewerScript.src = "https://dimensions-3d-viewer.cloudinary.com/all.js";
+      viewerScript.type = "text/javascript";
+      viewerScript.async = true;
+      viewerScript.id = "tag-script";
+      viewerScript.crossOrigin = "anonymous";
+
+      viewerScript.onload = function() {
+      // load the tag script
+        (function() {
+          var tagScript = document.createElement("script");
+          tagScript.src = "https://dimensions-tag.cloudinary.com/all.js";
+          tagScript.type = "text/javascript";
+          tagScript.async = true;
+          tagScript.crossOrigin = "anonymous";
+
+          tagScript.onload = function() {
+            // load main.js
+            var mainScript = document.createElement("script");
+            mainScript.src = "main.js";
+            mainScript.type = "text/javascript";
+            script.async = true;
+            mainScript.crossOrigin = "anonymous";
+
+            document.head.appendChild(mainScript);
+          };
+
+          tagScript.onerror = function() {
+            console.error("Failed to load Cloudinary widget.");
+          };
+
+          document.head.appendChild(tagScript);
+        })();
+      };
+
+      document.head.appendChild(viewerScript);
+    })();
+  </script>
   <script type="text/javascript">
     window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=document.createElement("script");r.type="text/javascript",r.async=!0,r.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(r,a);for(var n=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],o=0;o<p.length;o++)heap[p[o]]=n(p[o])};
     heap.load("1831338868");
@@ -70,6 +109,5 @@
     <a class="signup-button mobile" href="https://console.cloudinary.com/users/login?RelayState=/3d" target="_blank" rel="noopener noreferrer">Get Started with Cloudinary 3D</a>
   </div>
 </div>
-<script src="main.js" type="application/javascript"></script>
 </body>
 </html>
