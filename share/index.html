@@ -27,7 +27,7 @@
     // load scripts without sending cookies to prevent headers too large error
     (function() {
       var viewerScript = document.createElement("script");
-      viewerScript.src = "https://dimensions-3d-viewer.cloudinary.com/all.js";
+      viewerScript.src = "https://dimensions-3d-viewer.cloudinary.com/latest/all.js";
       viewerScript.type = "text/javascript";
       viewerScript.async = true;
       viewerScript.id = "tag-script";
@@ -37,7 +37,7 @@
       // load the tag script
         (function() {
           var tagScript = document.createElement("script");
-          tagScript.src = "https://dimensions-tag.cloudinary.com/all.js";
+          tagScript.src = "https://dimensions-tag.cloudinary.com/latest/all.js";
           tagScript.type = "text/javascript";
           tagScript.async = true;
           tagScript.crossOrigin = "anonymous";
