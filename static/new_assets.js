@@ -2,7 +2,7 @@ runDimensions();
 
 function runDimensions() {
     const d8sApi = window._d8sApi = window.initDimensions({
-        account: "demo-site",
+        cloudName: "d8s-demo-site",
         viewers: [window.initDimensions.VIEWERS.THREE_D],
         imageViewer: {
             params: {},

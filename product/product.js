@@ -255,7 +255,7 @@ const { templates, videoTemplates } =PRODUCTS_INFO[sku];
 		?.forEach((img) => img.setAttribute("data-d8s-id", id));
 
 	const d8sApi = window._d8sApi = window.initDimensions({
-		account: "demo-site",
+		cloudName: "d8s-demo-site",
 		// account: "cloudinary-dimensions",
 		viewers: [
 			window.initDimensions.VIEWERS.IMAGE,
