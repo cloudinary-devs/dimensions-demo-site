@@ -132,8 +132,10 @@ function prepareHTML() {
 		assetsContainer.appendChild(container);
 	});
 
-	if (imageTemplates?.length || videoTemplates?.length || hasThreeD) {
-		document.getElementById("empty-message").classList.add("hide");
+	const isEmptyProduct = !imageTemplates?.length && !videoTemplates?.length && !hasThreeD;
+	if (isEmptyProduct) {
+		document.getElementById("empty-message").classList.add("show");
+	} else {
 		document.getElementById("product-details").classList.add("show");
 	}
 }
