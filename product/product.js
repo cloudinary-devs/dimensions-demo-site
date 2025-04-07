@@ -7,13 +7,6 @@ const PRODUCTS_INFO = {
 		preset: "p-watch1",
 		templates: ["watch-front", "watch-right", "watch-front-right", "watch-front-left"], //, "watch-back"],
 	},
-	// "p-667": {
-	// 	title: "Laptop Pro Model",
-	// 	description: "Elevate your productivity with our cutting-edge laptop, seamlessly blending power and portability. Crafted with precision, it boasts a sleek design, vibrant display, and lightning-fast performance to meet your every digital need.",
-	// 	price: "$590.00",
-	// 	preset: "p-laptop",
-	// 	templates: ["laptop-front", "laptop-right", "laptop-left", "laptop-top"], //, "laptop-back"],
-	// },
 	"f-567-g": {
 		title: "Gaming Chair 2024",
 		description: "Immerse yourself in gaming nirvana with our ergonomic gaming chair. Designed for comfort and performance, it offers adjustable features, lumbar support, and a sleek aesthetic to enhance your gaming experience. Conquer virtual worlds in style and comfort.",
@@ -21,13 +14,6 @@ const PRODUCTS_INFO = {
 		preset: "p-chair",
 		templates: ["chair-front", "chair-front-right", "chair-front-left", "chair-back"], //, "chair-zoom"],
 	},
-	// "a-123cm": {
-	// 	title: "Automatic Coffee Machine",
-	// 	description: "Indulge in the art of coffee with our automatic coffee machine. Effortlessly brew barista-quality coffee at the touch of a button, bringing the cafe experience into the comfort of your home. Start your day with the perfect cup, every time.",
-	// 	price: "$340.00",
-	// 	preset: "p-appliance",
-	// 	templates: ["appliance-port-front", "appliance-port-front-right", "appliance-port-front-left", "appliance-port-back"], // "appliance-port-top"],
-	// },
 	"f-123b": {
 		title: "Lounge Armchair",
 		description: "Transform your space into a haven of relaxation with our plush lounge armchair. Sink into luxury as the ergonomic design cradles you in comfort. Whether reading a book or unwinding after a long day, this armchair is the epitome of leisure.",
@@ -48,7 +34,6 @@ const PRODUCTS_INFO = {
 		description: "A chair like no other",
 		price: "$1100.00",
 		preset: "barber-chair-2-1711971466758-preset",
-		// templates: ["furniture-port-front", "furniture-port-front-right", "furniture-port-left", "furniture-port-front-left"],
 		config: {
 			"Fabric": {
 				mesh: "Scene_1.Barber_Chair002_Baked003",
@@ -244,7 +229,7 @@ function runDimensions(id) {
 	if (!id) {
 		return;
 	}
-const { templates, videoTemplates } =PRODUCTS_INFO[sku];
+const { preset, templates, videoTemplates } =PRODUCTS_INFO[sku];
 
 	const hasTemplates = !!(templates?.length || videoTemplates?.length);
 
@@ -256,10 +241,13 @@ const { templates, videoTemplates } =PRODUCTS_INFO[sku];
 
 	const d8sApi = window._d8sApi = window.initDimensions({
 		cloudName: "d8s-demo-site",
+		defaults: {
+			preset
+		},
 		// account: "cloudinary-dimensions",
 		viewers: [
-			window.initDimensions.VIEWERS.IMAGE,
-			window.initDimensions.VIEWERS.VIDEO,
+			templates?.length ? window.initDimensions.VIEWERS.IMAGE : undefined,
+			videoTemplates?.length ? window.initDimensions.VIEWERS.VIDEO : undefined,
 			window.initDimensions.VIEWERS.THREE_D,
 		],
 		imageViewer: {
@@ -421,6 +409,7 @@ function showConfigurator (id){
 			window._d8sApi.update3d(
 				document.getElementById("three-d-viewer"),
 				{
+					id: sku,
 					productConfigs: [config],
 					activeConfigs: [
 						{ mesh: area.mesh, configIndex: 0}
