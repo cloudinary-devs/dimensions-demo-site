@@ -83,26 +83,27 @@ function createAssetElement(url, isVideo = false, isSpin = false) {
 		assetElement.appendChild(videoElement);
 	} else if (isSpin) {
 		if (url) {
-			const unsortedUrls = url.split(",")
-				.map((url) => {
+			const unsortedUrls = url.split(",");
+
+			const sortedUrls =
+				unsortedUrls.map((url) => {
 					return url.startsWith("http") ?
 						//only the first is the full url so we can copy it to the next shortened urls
 						url :
 						//we can't pass all urls fully so we pass only the index suffix
 						unsortedUrls[0].substring(0, (unsortedUrls[0].lastIndexOf("_") + 1)) + url;
-				});
+				})
+					.sort((a, b) => {
+						// Extract the filename portion (after the last slash)
+						const fileNameA = a.substring(a.lastIndexOf("/") + 1);
+						const fileNameB = b.substring(b.lastIndexOf("/") + 1);
 
-			const sortedUrls = unsortedUrls.sort((a, b) => {
-				// Extract the filename portion (after the last slash)
-				const fileNameA = a.substring(a.lastIndexOf('/') + 1);
-				const fileNameB = b.substring(b.lastIndexOf('/') + 1);
+						// Extract the number from the filename (assuming format: something_X.png where X is a number)
+						const numberA = parseInt(fileNameA.match(/_(\d+)\.png$/)?.[1] || "0", 10);
+						const numberB = parseInt(fileNameB.match(/_(\d+)\.png$/)?.[1] || "0", 10);
 
-				// Extract the number from the filename (assuming format: something_X.png where X is a number)
-				const numberA = parseInt(fileNameA.match(/_(\d+)\.png$/)?.[1] || '0', 10);
-				const numberB = parseInt(fileNameB.match(/_(\d+)\.png$/)?.[1] || '0', 10);
-
-				return numberA - numberB;
-			});
+						return numberA - numberB;
+					});
 
 			window._d8sApi.addSpinset(assetElement, { spinsetViewer: { urls: sortedUrls } });
 
