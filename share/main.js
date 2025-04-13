@@ -83,7 +83,16 @@ function createAssetElement(url, isVideo = false, isSpin = false) {
 		assetElement.appendChild(videoElement);
 	} else if (isSpin) {
 		if (url) {
-			const sortedUrls =  url.split(',').sort((a, b) => {
+			const unsortedUrls = urls.split(",")
+				.map((url) => {
+					return url.startsWith("http") ?
+						//only the first is the full url so we can copy it to the next shortened urls
+						url :
+						//we can't pass all urls fully so we pass only the index suffix
+						unsortedUrls[0].substring(0, (unsortedUrls[0].lastIndexOf("_") + 1)) + url;
+				});
+
+			const sortedUrls = unsortedUrls.sort((a, b) => {
 				// Extract the filename portion (after the last slash)
 				const fileNameA = a.substring(a.lastIndexOf('/') + 1);
 				const fileNameB = b.substring(b.lastIndexOf('/') + 1);
@@ -96,6 +105,7 @@ function createAssetElement(url, isVideo = false, isSpin = false) {
 			});
 
 			window._d8sApi.addSpinset(assetElement, { spinsetViewer: { urls: sortedUrls } });
+
 			window._d8sApi.on((event) => {
 				if (event === "tag-spinset-load-error") {
 					handleSpinsetError(assetElement);
