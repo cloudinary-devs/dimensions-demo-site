@@ -26,8 +26,23 @@
   <script>
     // load scripts without sending cookies to prevent headers too large error
     (function() {
+
+	    function decodeObjectString(str) {
+		    const binString = atob(str);
+		    const bytes = Uint8Array.from(binString, (m) => m.codePointAt(0));
+		    return JSON.parse(new TextDecoder().decode(bytes) || "{}");
+	    }
+
+	    const searchParams = window.location.search
+		    .replace("?", "")
+		    .split("&")
+		    .map((pair) => pair.split("="));
+	    const data = window._pageData = decodeObjectString(searchParams.filter(([key, value]) => key === "d")?.[0]?.[1] || "");
+        const { environment } = data;
+				const jsEnv = environment !== "production" ? "-staging" : "";
+
       var viewerScript = document.createElement("script");
-      viewerScript.src = "https://dimensions-3d-viewer.cloudinary.com/latest/all.js";
+      viewerScript.src = `https://dimensions-3d-viewer${jsEnv}.cloudinary.com/latest/all.js`;
       viewerScript.type = "text/javascript";
       viewerScript.async = true;
       viewerScript.id = "tag-script";
@@ -37,7 +52,7 @@
       // load the tag script
         (function() {
           var tagScript = document.createElement("script");
-          tagScript.src = "https://dimensions-tag.cloudinary.com/latest/all.js";
+          tagScript.src = `https://dimensions-tag${jsEnv}.cloudinary.com/latest/all.js`;
           tagScript.type = "text/javascript";
           tagScript.async = true;
           tagScript.crossOrigin = "anonymous";

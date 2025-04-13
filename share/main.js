@@ -1,9 +1,5 @@
-const searchParams = window.location.search
-	.replace("?", "")
-	.split("&")
-	.map((pair) => pair.split("="));
-const data = decodeObjectString(searchParams.filter(([key, value]) => key === "d")?.[0]?.[1] || "");
-const { name, sku, preset, cloudName, imageTemplates, videoTemplates, hasThreeD, environment } = data;
+
+const { name, sku, preset, cloudName, imageTemplates, videoTemplates, spinsetTemplates, hasThreeD, environment } = window._pageData;
 
 document.addEventListener("error", handleAssetLoadError, true);
 
@@ -12,9 +8,11 @@ if (!sku || !preset || !cloudName) {
 	!preset && console.error("No product preset present!");
 	!cloudName && console.error("No cloudName present!");
 } else {
+	runDimensions();
 	prepareHTML();
 	setProductInfo();
-	runDimensions();
+
+	window._d8sApi.render();
 }
 
 function runDimensions() {
@@ -24,6 +22,9 @@ function runDimensions() {
 	}
 	if (!!videoTemplates?.length) {
 		VIEWERS.push(window.initDimensions.VIEWERS.VIDEO);
+	}
+	if (!!spinsetTemplates?.length) {
+		VIEWERS.push(window.initDimensions.VIEWERS.SPINSET);
 	}
 	if (hasThreeD) {
 		VIEWERS.push(window.initDimensions.VIEWERS.THREE_D);
@@ -35,6 +36,7 @@ function runDimensions() {
 	window._d8sApi = window.initDimensions({
 		cloudName: cloudName,
 		viewers: VIEWERS,
+		autoRender: false,
 		imageViewer: {
 			params: {},
 		},
@@ -65,7 +67,7 @@ function runDimensions() {
 	});
 }
 
-function createAssetElement(url, isVideo = false) {
+function createAssetElement(url, isVideo = false, isSpin = false) {
 	const assetElement = document.createElement("div");
 
 	if (isVideo) {
@@ -79,7 +81,29 @@ function createAssetElement(url, isVideo = false) {
 		videoElement.src = url;
 
 		assetElement.appendChild(videoElement);
+	} else if (isSpin) {
+		if (url) {
+			const sortedUrls =  url.split(',').sort((a, b) => {
+				// Extract the filename portion (after the last slash)
+				const fileNameA = a.substring(a.lastIndexOf('/') + 1);
+				const fileNameB = b.substring(b.lastIndexOf('/') + 1);
 
+				// Extract the number from the filename (assuming format: something_X.png where X is a number)
+				const numberA = parseInt(fileNameA.match(/_(\d+)\.png$/)?.[1] || '0', 10);
+				const numberB = parseInt(fileNameB.match(/_(\d+)\.png$/)?.[1] || '0', 10);
+
+				return numberA - numberB;
+			});
+
+			window._d8sApi.addSpinset(assetElement, { spinsetViewer: { urls: sortedUrls } });
+			window._d8sApi.on((event) => {
+				if (event === "tag-spinset-load-error") {
+					handleSpinsetError(assetElement);
+				}
+			})
+		} else {
+			handleSpinsetError(assetElement);
+		}
 	} else {
 		const imgElement = document.createElement("img");
 		imgElement.src = url;
@@ -98,12 +122,12 @@ function createAssetElement(url, isVideo = false) {
 	return assetElement;
 }
 
-function createErrorMessage(isVideo = false) {
+function createErrorMessage(msg) {
 	const errorElement = document.createElement("div");
 	errorElement.classList.add("error-message");
 	const p1 = document.createElement("p");
 	const p2 = document.createElement("p");
-	p1.innerText = `Generating ${isVideo ? "video" : "image"}...`;
+	p1.innerText = msg;
 	p1.classList.add("error-bold")
 	p2.innerText = "Please refresh the page in a few seconds";
 
@@ -120,7 +144,7 @@ function prepareHTML() {
 		const container = document.createElement("div");
 		container.classList.add("asset", "asset-img");
 		container.appendChild(createAssetElement(artifactUrl));
-		container.appendChild(createErrorMessage());
+		container.appendChild(createErrorMessage("Generating image..."));
 		assetsContainer.appendChild(container);
 	});
 
@@ -128,11 +152,20 @@ function prepareHTML() {
 		const container = document.createElement("div");
 		container.classList.add("asset", "asset-video");
 		container.appendChild(createAssetElement(artifactsUrl, true));
-		container.appendChild(createErrorMessage(true));
+		container.appendChild(createErrorMessage("Generating video..."));
 		assetsContainer.appendChild(container);
 	});
 
-	const isEmptyProduct = !imageTemplates?.length && !videoTemplates?.length && !hasThreeD;
+	spinsetTemplates?.forEach((artifactsUrl) => {
+		const container = document.createElement("div");
+		container.classList.add("asset", "asset-spin");
+		container.appendChild(createErrorMessage("Generating 360 spinset..."));
+		container.appendChild(createAssetElement(artifactsUrl, false, true));
+		assetsContainer.appendChild(container);
+	});
+
+	const isEmptyProduct = !imageTemplates?.length && !videoTemplates?.length && !spinsetTemplates?.length && !hasThreeD;
+
 	if (isEmptyProduct) {
 		document.getElementById("empty-message").classList.add("show");
 	} else {
@@ -181,11 +214,6 @@ function encodeObject(obj) {
 	return btoa(binString);
 }
 
-function decodeObjectString(str) {
-	const binString = atob(str);
-	const bytes = Uint8Array.from(binString, (m) => m.codePointAt(0));
-	return JSON.parse(new TextDecoder().decode(bytes) || "{}");
-}
 
 function copyUrl() {
 	const tooltip = document.getElementById("share-tooltip");
@@ -207,4 +235,10 @@ function handleAssetLoadError(e){
 			e.target.parentElement.parentElement.classList.add('asset-error');
 		}
 	}
+}
+
+function handleSpinsetError(spinsetContainer) {
+	setTimeout(() => {
+		spinsetContainer.parentElement.classList.add('asset-error');
+	}, 10)
 }

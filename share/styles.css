@@ -135,7 +135,7 @@ a.signup-button {
     padding: 2px;
 }
 
-.asset-img, .asset-video {
+.asset-img, .asset-video, .asset-spin {
     position: relative;
     width: 500px;
     height: 550px;
