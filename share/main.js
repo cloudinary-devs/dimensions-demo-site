@@ -83,7 +83,7 @@ function createAssetElement(url, isVideo = false, isSpin = false) {
 		assetElement.appendChild(videoElement);
 	} else if (isSpin) {
 		if (url) {
-			const unsortedUrls = urls.split(",")
+			const unsortedUrls = url.split(",")
 				.map((url) => {
 					return url.startsWith("http") ?
 						//only the first is the full url so we can copy it to the next shortened urls
