@@ -6,6 +6,7 @@ const PRODUCTS_INFO = {
 		price: "$250.00",
 		preset: "p-watch1",
 		templates: ["watch-front", "watch-right", "watch-front-right", "watch-front-left"], //, "watch-back"],
+		spinsets: [ { id: "hand_watch_rpomxa-14-4-2025", preset: "handwatch-1747230595943-preset", name: "spinset-demo"}]
 	},
 	"f-567-g": {
 		title: "Gaming Chair 2024",
@@ -14,7 +15,7 @@ const PRODUCTS_INFO = {
 		preset: "p-chair",
 		templates: ["chair-front", "chair-front-right", "chair-front-left", "chair-back"], //, "chair-zoom"],
 	},
-	"f-123b": {
+	"f-123b":   {
 		title: "Lounge Armchair",
 		description: "Transform your space into a haven of relaxation with our plush lounge armchair. Sink into luxury as the ergonomic design cradles you in comfort. Whether reading a book or unwinding after a long day, this armchair is the epitome of leisure.",
 		price: "$450.00",
@@ -229,10 +230,9 @@ function runDimensions(id) {
 	if (!id) {
 		return;
 	}
-const { preset, templates, videoTemplates } =PRODUCTS_INFO[sku];
+	const { preset, templates, videoTemplates, spinsets } =PRODUCTS_INFO[sku];
 
-	const hasTemplates = !!(templates?.length || videoTemplates?.length);
-
+	const hasTemplates = !!(templates?.length || videoTemplates?.length || spinsets?.length);
 
 	//TODO: use the tag defaults config feature !!!! for product id & preset
 	document.getElementById("three-d-viewer")?.setAttribute("data-d8s-id", id);
@@ -248,6 +248,7 @@ const { preset, templates, videoTemplates } =PRODUCTS_INFO[sku];
 		viewers: [
 			templates?.length ? window.initDimensions.VIEWERS.IMAGE : undefined,
 			videoTemplates?.length ? window.initDimensions.VIEWERS.VIDEO : undefined,
+			spinsets?.length ? window.initDimensions.VIEWERS.SPINSET : undefined,
 			window.initDimensions.VIEWERS.THREE_D,
 		],
 		imageViewer: {
@@ -298,7 +299,7 @@ const { preset, templates, videoTemplates } =PRODUCTS_INFO[sku];
 }
 
 function prepareHTML(sku) {
-	const { preset, templates, videoTemplates } = PRODUCTS_INFO[sku];
+	const { preset, templates, videoTemplates, spinsets } = PRODUCTS_INFO[sku];
 	const ZOOM_IMAGE_URL = `https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/f_auto,q_auto,dpr_2,w_1000/${sku}/${preset}/`;
 	let hasImages = false, hasVideos = false;
 
@@ -314,6 +315,17 @@ function prepareHTML(sku) {
 			el.addEventListener("touchstart", setZoomImage(zoomImageUrl));
 			el.addEventListener("mouseenter", setZoomImage(zoomImageUrl));
 			idx+=1;
+		}
+
+		const spinElements = document.getElementsByClassName("spinset-container");
+
+		if (spinsets?.length) {
+			Array.prototype.forEach.call(spinElements, (el, i) => {
+				const { id, preset, name  } = spinsets[i];
+				el.setAttribute("data-d8s-id", id);
+				el.setAttribute("data-d8s-preset", preset);
+				el.setAttribute("data-d8s-name", name);
+			});
 		}
 
 		const previewImg = document.getElementById("three-d-preview");
