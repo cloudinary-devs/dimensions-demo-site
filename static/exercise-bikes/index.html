@@ -123,18 +123,28 @@
           </div>
         </div>
 
-        <div class="asset asset-img">
-          <div
-                  class="product-image"
-                  onmouseenter="setZoomImage(event, 6)"
-                  onmousemove="zoom(event)"
-                  onmouseleave="removeZoomImage(event)"
-                  ontouchmove="zoom(event)"
-                  ontouchend="removeZoomImage(event)"
-          >
-            <img src="https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/f_auto/c_fill,h_500,w_500,g_auto/p-gym/6">
-          </div>
+        <div class="asset asset-spin">
+            <div
+                    id="spinset-container"
+                    data-d8s-type="spinset"
+                    data-d8s-id="Gym-Bike-20-10-2024"
+                    data-d8s-preset="gym-bike-1732110858855-preset"
+                    data-d8s-name="spinset-demo"
+            >
+            </div>
         </div>
+<!--        <div class="asset asset-img">-->
+<!--          <div-->
+<!--                  class="product-image"-->
+<!--                  onmouseenter="setZoomImage(event, 6)"-->
+<!--                  onmousemove="zoom(event)"-->
+<!--                  onmouseleave="removeZoomImage(event)"-->
+<!--                  ontouchmove="zoom(event)"-->
+<!--                  ontouchend="removeZoomImage(event)"-->
+<!--          >-->
+<!--            <img src="https://dimensions-art.cloudinary.net/d8s-demo-site/image/upload/f_auto/c_fill,h_500,w_500,g_auto/p-gym/6">-->
+<!--          </div>-->
+<!--        </div>-->
 
         <div class="asset asset-img">
           <div
@@ -195,5 +205,14 @@
     <img src="https://res.cloudinary.com/prod/image/upload/dpr_2.0/dimensions-app/graphics/d8s-demo-by-logo.png" />
   </div>
 </div>
+
+<script>
+	window.d8sApi = initDimensions({
+		cloudName: "d8s-demo-site",
+		viewers: ["SPINSET"],
+		spinsetViewer: {
+		},
+	});
+</script>
 </body>
 </html>
