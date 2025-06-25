@@ -21,6 +21,7 @@ function runDimensions() {
                 showLoadingProgress: true,
 
                 renderer: {
+									...(window._3dViewerParams?.renderer || {}),
                     debug: {
                         // printStructure: true,
                     },
